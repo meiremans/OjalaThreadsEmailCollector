@@ -13,8 +13,7 @@ The purpose of this project is to store emails in a .csv file from a POST reques
 ### Installing
 1. Clone the repository
 `git clone https://github.com/meiremans/mailCollectorApi`
-2. Within the repository execute `npm i`
-3. Run `npm run build`
+2. Run `docker-compose up -d --build`
 
 ### Developing
 Start the instance by running  `npm start`
