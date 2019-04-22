@@ -5,18 +5,19 @@ import csv from 'csvtojson';
 import path from 'path';
 import { logger, logUser, deleteUser } from './index';
 
+const auth = require('./../services/authentication');
 const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 const router = Router({});
 
-router.get('/', async (req, res) => {
+router.get('/', auth.BasicAuthentication, async (req, res) => {
   const emails = await csv().fromFile(emailFile);
   res.render('structure', {
     emails,
-    title: 'Newsletter - Ojala Threads',
+    title: 'email collector - Theaminds',
   });
 });
 
-router.post('/delete/:email', async (req, res) => {
+router.post('/delete/:email', auth.BasicAuthentication, async (req, res) => {
   const { email } = req.params;
   await deleteUser(email);
   res.end();
@@ -31,9 +32,9 @@ router.post('/email', async (req, res) => {
   res.end(responseMsg);
 });
 
-router.get('/download', (req, res) => {
+router.get('/download', auth.BasicAuthentication, (req, res) => {
   const date = moment(new Date()).format('MMM-Do-YY');
-  const name = `OjalaEmails-${date}.csv`;
+  const name = `teamindsMail-${date}.csv`;
   res.download(emailFile, name);
 });
 

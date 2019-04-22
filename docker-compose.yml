@@ -1,0 +1,22 @@
+version: "2"
+services:
+  mailcollector:
+      container_name: teamindsMailCollector
+      build: .
+      environment:
+            - USERNAME=test
+            - PASSWORD=test
+      restart: always
+      volumes:
+        - datavolume:/usr/src/logs
+      expose:
+        - 8080
+      ports:
+        - 2000:8080
+volumes:
+    datavolume:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy-manager_default

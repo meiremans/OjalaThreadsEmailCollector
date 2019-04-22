@@ -9,7 +9,7 @@ const readFile = util.promisify(fs.readFile);
 (async function createBackup() {
   // Format filename
   const date = moment(new Date()).format('MMM-Do-YY');
-  const filename = `OjalaEmails-${date}.csv`;
+  const filename = `TeamindsEmails-${date}.csv`;
 
   // Generate the file-path to store the backup file
   const logDir = config.get('logDirectory');

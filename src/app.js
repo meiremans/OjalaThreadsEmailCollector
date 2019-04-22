@@ -18,7 +18,7 @@ if (!fs.existsSync(emailFile)) {
 // Create backups folder if it doesn't exist
 const backupFolder = path.join(logDir, 'backups');
 if (!fs.existsSync(backupFolder)) {
-  fs.mkdir(backupFolder);
+  fs.mkdirSync(backupFolder);
 }
 
 // Express setup
